@@ -18,8 +18,9 @@ class PendudukController extends Controller
      */
     public function index(Request $request)
     {
-        $penduduk = Penduduk::where('kematian', 0)->get();
+        $penduduk = Penduduk::where('kematian', 0)->orderBy('nama', 'asc')->get();
         $filter = Penduduk::select('dusun')->distinct()->get();
+
         return view('pages.data-penduduk', compact('penduduk', 'filter'));
     }
 
@@ -133,6 +134,8 @@ class PendudukController extends Controller
         $data = Penduduk::find($id);
 
         $data->kelahiran()->delete();
+        $data->kartuKeluarga()->delete();
+        $data->mutasi()->delete();
         $data->delete();
         return redirect()->route('penduduk.index')->with('delete', 'Data Berhasil Dihapus');
     }

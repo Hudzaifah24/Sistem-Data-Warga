@@ -2,12 +2,12 @@
     <!-- Brand Logo -->
     <a href="{{ route('dashboard') }}" class="brand-link">
       <img
-        src="/AdminLTE-3.1.0/dist/img/AdminLTELogo.png"
+        src="{{asset('AdminLTE-3.1.0/dist/img/AdminLTELogo.png')}}"
         alt="AdminLTE Logo"
         class="brand-image img-circle elevation-3"
         style="opacity: 0.8"
       />
-      <span class="brand-text font-weight-light">Data Warga</span>
+      <span class="brand-text font-weight-light">Data Penduduk</span>
     </a>
 
     <!-- Sidebar -->
@@ -16,7 +16,7 @@
       <div class="pb-3 mt-3 mb-3 user-panel d-flex">
         <div class="image">
           <img
-            src="/AdminLTE-3.1.0/dist/img/user2-160x160.jpg"
+            src="{{asset('pp/pp.jpg')}}"
             class="img-circle elevation-2"
             alt="User Image"
           />

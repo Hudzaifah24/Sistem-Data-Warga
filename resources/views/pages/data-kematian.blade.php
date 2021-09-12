@@ -45,6 +45,8 @@
                                     <div class="form-group">
                                         <input type="file" name="file">
                                     </div>
+                                    <span class="text-muted">Saya Menyarankan Agar Mendownload Templatenya Terlebih Dahulu...</span>
+                                    <a href="{{route('template.kematian')}}">Download Template... <i class="fa fa-download" aria-hidden="true"></i></a>
 
                                 </div>
                                 <div class="modal-footer">
@@ -55,9 +57,9 @@
                         </form>
                     </div>
                 </div>
-                <a href="{{ route('export.kematian') }}" class="my-3 mr-2 btn btn-success" target="_blank">EXPORT EXCEL</a>
-                <a href="{{ route('kematian.create') }}" class="my-3 btn btn-info">TAMBAH DATA</a>
+                <a href="{{ route('kematian.create') }}" class="my-3 mr-2 btn btn-info">TAMBAH DATA</a>
             @endif
+                <a href="{{ route('export.kematian') }}" class="my-3 btn btn-success" target="_blank">EXPORT EXCEL</a>
         </div>
         <!-- /.container-fluid -->
         </section>
@@ -187,6 +189,34 @@
                                 <td>{{$data->NIK}}</td>
                                 <td>{{$data->tempat_kematian}}</td>
                                 <td class="text-right project-actions">
+                                    @if ($data->persetujuan)
+                                        <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#akta{{$data->id}}">
+                                            <i class="fas fa-image"> </i>
+                                        </a>
+                                        <!-- Modal -->
+                                        <div class="text-left modal fade" id="akta{{$data->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLongTitle">Photo Akta Kematian</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="col-12">
+                                                            <img src="{{asset('persetujuan_kematian/'.$data->persetujuan)}}" alt="Photo Akta Kematian">
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        {{-- <button type="button" class="btn btn-primary">Print</button> --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+
                                     <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#detail{{$data->id}}">
                                         <i class="fas fa-folder"> </i>
                                         View
@@ -237,11 +267,17 @@
                                                         </tr>
                                                         <tr>
                                                             <th scope="col">
-                                                                Persetujuan
+                                                                Akta Kematian (photo)
                                                             </th>
-                                                            <td scope="col" class="">
-                                                                <i class="fas fa-file-archive"></i>
-                                                                <a href="{{asset('persetujuan_kematian/'.$data->persetujuan)}}" download class="text-light" data-toggle="tooltip" data-placement="top" title="{{$data->persetujuan}}">Download</a>
+                                                            <td scope="col">
+                                                                @if ($data->persetujuan)
+                                                                    <i class="fas fa-file-archive"></i>
+                                                                    <a href="{{asset('persetujuan_kematian/'.$data->persetujuan)}}" download class="text-light" data-toggle="tooltip" data-placement="top" title="{{$data->persetujuan}}">Download</a>
+                                                                @else
+                                                                    <a>
+                                                                        Tidak Ada Photo
+                                                                    </a>
+                                                                @endif
                                                             </td>
                                                         </tr>
                                                     </table>

@@ -18,7 +18,7 @@ class KartuKeluargaController extends Controller
      */
     public function index()
     {
-        $kartuKeluarga = KartuKeluarga::get();
+        $kartuKeluarga = KartuKeluarga::orderBy('nama', 'asc')->get();
         $filter = KartuKeluarga::select('nama')->distinct()->get();
         $kartuKeluargaDetail = DetailKartuKeluarga::get();
         return view('pages.data-kartu-keluarga', compact('kartuKeluarga', 'kartuKeluargaDetail', 'filter'));

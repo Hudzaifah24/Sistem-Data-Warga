@@ -45,6 +45,8 @@
                                     <div class="form-group">
                                         <input type="file" name="file">
                                     </div>
+                                    <span class="text-muted">Saya Menyarankan Agar Mendownload Templatenya Terlebih Dahulu...</span>
+                                    <a href="{{route('template.penduduk')}}">Download Template... <i class="fa fa-download" aria-hidden="true"></i></a>
 
                                 </div>
                                 <div class="modal-footer">
@@ -55,9 +57,9 @@
                         </form>
                     </div>
                 </div>
-                <a href="{{ route('export.penduduk') }}" class="my-3 mr-2 btn btn-success" target="_blank">EXPORT EXCEL</a>
-                <a href="{{ route('penduduk.create') }}" class="my-3 btn btn-info">TAMBAH DATA</a>
+                <a href="{{ route('penduduk.create') }}" class="my-3 mr-2 btn btn-info">TAMBAH DATA</a>
             @endif
+                <a href="{{ route('export.penduduk') }}" class="my-3 btn btn-success" target="_blank">EXPORT EXCEL</a>
         </div>
         <!-- /.container-fluid -->
         </section>
@@ -171,6 +173,7 @@
                             <th scope="col" class="text-left">#</th>
                             <th scope="col" class="text-left">NIK</th>
                             <th scope="col" class="">Nama</th>
+                            <th scope="col" class="">Umur</th>
                             <th scope="col" class="text-center" >Nama Dusun</th>
                             <th scope="col" class="text-right" >Action</th>
                         </tr>
@@ -178,7 +181,8 @@
                     <tbody>
                         @forelse ($penduduk as $data)
                             <tr>
-                                <td class="text-left">{{ $loop->iteration }}</td>
+                                {{-- <td class="text-left">{{ $loop->iteration }}</td> --}}
+                                <td class="text-left">{{ $data->id }}</td>
                                 <td class="text-left">
                                     @if ($data->NIK)
                                         {{$data->NIK}}
@@ -215,6 +219,13 @@
                                     @endif
                                 </td>
                                 <td class="">{{$data->nama}}</td>
+                                @php
+                                    $now = date('Y');
+                                    $lahir = date_create($data->tanggal_lahir);
+                                    $date = date_format($lahir, 'Y');
+                                    $umur = $now - $date;
+                                @endphp
+                                <td class="">{{$umur. ' Tahun'}}</td>
                                 <td class="text-center">{{$data->dusun}}</td>
                                 <td class="text-right"class="text-right project-actions">
                                     @if ($data->kematian==0)
@@ -264,6 +275,14 @@
                                                                 </th>
                                                                 <td scope="col">
                                                                     {{$data->nama}}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="col">
+                                                                    Umur
+                                                                </th>
+                                                                <td scope="col">
+                                                                    {{$umur.' Tahun'}}
                                                                 </td>
                                                             </tr>
                                                             <tr>

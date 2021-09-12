@@ -3,19 +3,16 @@
 use App\Http\Controllers\AccountControoler;
 use App\Http\Controllers\Cetak\CetakController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DataWargaController;
-use App\Http\Controllers\DesaController;
 use App\Http\Controllers\DetailKartuKeluargaController;
 use App\Http\Controllers\DusunController;
 use App\Http\Controllers\Excel\ExportController;
 use App\Http\Controllers\Excel\ImportController;
+use App\Http\Controllers\Excel\TemplateController;
 use App\Http\Controllers\KartuKeluargaController;
 use App\Http\Controllers\KelahiranController;
 use App\Http\Controllers\KematianController;
-use App\Http\Controllers\KTPController;
 use App\Http\Controllers\MutasiController;
 use App\Http\Controllers\PendudukController;
-use App\Http\Controllers\RTRWController;
 use App\Http\Controllers\SuratController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -118,22 +115,17 @@ Route::middleware('auth')->group(function(){
         Route::post('mutasi', [ImportController::class, 'mutasi'])->name('import.mutasi');
     });
 
+    Route::prefix('template')->group(function(){
+        Route::get('dusun', [TemplateController::class, 'dusun'])->name('template.dusun');
+        Route::get('penduduk', [TemplateController::class, 'penduduk'])->name('template.penduduk');
+        Route::get('kartukeluarga', [TemplateController::class, 'kartukeluarga'])->name('template.kartukeluarga');
+        Route::get('kartukeluarga/detail', [TemplateController::class, 'kartuKeluargaDetail'])->name('template.kartuKeluargaDetail');
+        Route::get('kematian', [TemplateController::class, 'kematian'])->name('template.kematian');
+        Route::get('kelahiran', [TemplateController::class, 'kelahiran'])->name('template.kelahiran');
+        Route::get('mutasi', [TemplateController::class, 'mutasi'])->name('template.mutasi');
+    });
+
 });
 
 // Auth
 Auth::routes();
-
-
-// desa
-Route::resource('desa', DesaController::class);
-
-// RTRW
-Route::resource('rt/rw', RTRWController::class);
-
-// penduduk
-Route::resource('warga', DataWargaController::class);
-
-// ktp
-Route::resource('ktp', KTPController::class);
-
-Route::post('image', [DataWargaController::class, 'photo'])->name('photo.store');

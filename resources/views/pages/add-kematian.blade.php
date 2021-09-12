@@ -68,7 +68,7 @@
                                 <input value="{{ old('alasan') }}" name="alasan" type="text" id="inputName" class="form-control" />
                             </div>
                             <div class="form-group">
-                                <label for="inputName">Masukkan Berkas Pendukung</label>
+                                <label for="inputName">Akta Kematian (Photo)</label>
                                 <input value="{{ old('persetujuan') }}" name="persetujuan" type="file" id="inputName" class="form-control" />
                             </div>
                         </div>

@@ -16,7 +16,7 @@ class MutasiController extends Controller
      */
     public function index()
     {
-        $mutasi = Mutasi::get();
+        $mutasi = Mutasi::orderBy('nama', 'asc')->get();
         $filter = Mutasi::select('persetujuan')->distinct()->get();
         return view('pages.data-mutasi', compact('mutasi', 'filter'));
     }

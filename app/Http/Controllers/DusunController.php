@@ -14,7 +14,7 @@ class DusunController extends Controller
      */
     public function index()
     {
-        $dusun = Dusun::get();
+        $dusun = Dusun::orderBy('dusun', 'asc')->get();
         $filter = Dusun::select('alamat')->distinct()->get();
         return view('pages.data-dusun', compact('dusun', 'filter'));
     }

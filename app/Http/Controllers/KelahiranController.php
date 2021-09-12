@@ -20,7 +20,7 @@ class KelahiranController extends Controller
         $dusun = Dusun::get();
         $filter = Kelahiran::select('jenis_kelamin')->distinct()->get();
         $filterDusun = Kelahiran::select('dusun')->distinct()->get();
-        $kelahiran = Kelahiran::get();
+        $kelahiran = Kelahiran::orderBy('namaKelahiran', 'asc')->get();
         return view('pages.data-kelahiran', compact('kelahiran', 'dusun', 'filter', 'filterDusun'));
     }
 
@@ -67,9 +67,8 @@ class KelahiranController extends Controller
      */
     public function create()
     {
-        $penduduk = Penduduk::get();
         $dusun = Dusun::get();
-        return view('pages.add-kelahiran', compact('penduduk', 'dusun'));
+        return view('pages.add-kelahiran', compact('dusun'));
     }
 
     /**
@@ -126,10 +125,9 @@ class KelahiranController extends Controller
      */
     public function edit($id)
     {
-        $penduduk = Penduduk::get();
         $kelahiran = Kelahiran::find($id);
-
-        return view('pages.edit-kelahiran', compact('penduduk', 'kelahiran'));
+        $dusun = Dusun::get();
+        return view('pages.edit-kelahiran', compact('dusun', 'kelahiran'));
     }
 
     /**
@@ -145,7 +143,9 @@ class KelahiranController extends Controller
         $data = $request->all();
 
         if ($request->file('persetujuan')) {
-            unlink('persetujuan_kelahiran/'. $kelahiran->persetujuan);
+            if ($kelahiran->persetujuan) {
+                unlink('persetujuan_kelahiran/'. $kelahiran->persetujuan);
+            }
 
             $namaFile = time().'.'.$request->file('persetujuan')->extension();
             $request->file('persetujuan')->move(public_path('persetujuan_kelahiran'), $namaFile);

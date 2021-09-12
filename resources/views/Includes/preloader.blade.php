@@ -8,4 +8,7 @@
         height="60"
         width="60"
     />
+    <p class="mt-3 font-weight-bold">
+        DATA PENDUDUK
+    </p>
 </div>

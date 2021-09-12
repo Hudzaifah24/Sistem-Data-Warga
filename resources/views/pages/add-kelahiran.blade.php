@@ -47,16 +47,16 @@
                             <input type="hidden" name="dusun" id="dusun">
                             <div class="form-group">
                                 <label for="inputName">Nama Lengkap</label>
-                                <input value="{{ old('nama') }}" name="nama" type="text" id="inputName" class="form-control" />
+                                <input placeholder="Nama Lengkap" value="{{ old('nama') }}" name="nama" type="text" id="inputName" class="form-control" />
                             </div>
                             <div class="form-group">
                                 <label for="inputName">Tempat Lahir</label>
                                 <div class="d-flex">
-                                    <input value="{{ old('tempat_lahir') }}" name="tempat_lahir" type="text" id="inputName" class="form-control " />
+                                    <input placeholder="Tempat Lahir" value="{{ old('tempat_lahir') }}" name="tempat_lahir" type="text" id="inputName" class="form-control " />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="inputName">Tempat Lahir</label>
+                                <label for="inputName">Tanggal Lahir</label>
                                 <div class="d-flex">
                                     <input value="{{ old('tanggal_lahir') }}" name="tanggal_lahir" type="date" id="inputName" class="form-control" />
                                 </div>
@@ -118,7 +118,7 @@
                             <input type="hidden" name="tanggal_lahir" id="tanggal_lahir"> --}}
                             {{-- <input type="hidden" name="kelahiran" value="1" id="kelahiran"> --}}
                             <div class="form-group">
-                                <label for="inputName">Masukkan Berkas Pendukung</label>
+                                <label for="inputName">Masukkan Foto Akta Kelahiran</label>
                                 <input value="{{ old('persetujuan') }}" name="persetujuan" type="file" id="inputName" class="form-control" />
                             </div>
                         </div>

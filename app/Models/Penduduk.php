@@ -40,6 +40,16 @@ class Penduduk extends Model
         return $this->belongsTo(Dusun::class, 'dusun_id', 'id');
     }
 
+    public function mutasi()
+    {
+        return $this->hasMany(Mutasi::class, 'penduduk_id', 'id');
+    }
+
+    public function kartuKeluarga()
+    {
+        return $this->hasMany(KartuKeluarga::class, 'penduduk_id', 'id');
+    }
+
     public function kelahiran()
     {
         return $this->hasMany(Kelahiran::class, 'namaKelahiran', 'nama');

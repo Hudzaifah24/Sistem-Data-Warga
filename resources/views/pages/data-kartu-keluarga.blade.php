@@ -45,6 +45,8 @@
                                     <div class="form-group">
                                         <input type="file" name="file">
                                     </div>
+                                    <span class="text-muted">Saya Menyarankan Agar Mendownload Templatenya Terlebih Dahulu...</span>
+                                    <a href="{{route('template.kartukeluarga')}}">Download Template... <i class="fa fa-download" aria-hidden="true"></i></a>
 
                                 </div>
                                 <div class="modal-footer">
@@ -55,9 +57,9 @@
                         </form>
                     </div>
                 </div>
-                <a href="{{ route('export.kartuKeluarga') }}" class="my-3 mr-2 btn btn-success" target="_blank">EXPORT EXCEL</a>
-                <a href="{{ route('kartukeluarga.create') }}" class="my-3 btn btn-info">TAMBAH DATA</a>
+                <a href="{{ route('kartukeluarga.create') }}" class="my-3 mr-2 btn btn-info">TAMBAH DATA</a>
             @endif
+                <a href="{{ route('export.kartuKeluarga') }}" class="my-3 btn btn-success" target="_blank">EXPORT EXCEL</a>
         </div>
         <!-- /.container-fluid -->
         </section>
@@ -211,7 +213,7 @@
                                                     </a>
                                                     @if (Auth::user()->role!='WATCHER')
                                                         <!-- Import Excel -->
-                                                        <button type="button" class="mr-2 btn btn-primary" data-toggle="modal" data-target="#importExcel">
+                                                        {{-- <button type="button" class="mr-2 btn btn-primary" data-toggle="modal" data-target="#importExcel">
                                                             IMPORT EXCEL
                                                         </button>
                                                         <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -230,6 +232,8 @@
                                                                             <div class="form-group">
                                                                                 <input type="file" name="file">
                                                                             </div>
+                                                                            <span class="text-muted">Saya Menyarankan Agar Mendownload Templatenya Terlebih Dahulu...</span>
+                                                                            <a href="{{route('template.kartuKeluargaDetail')}}">Download Template... <i class="fa fa-download" aria-hidden="true"></i></a>
 
                                                                         </div>
                                                                         <div class="modal-footer">
@@ -239,7 +243,7 @@
                                                                     </div>
                                                                 </form>
                                                             </div>
-                                                        </div>
+                                                        </div> --}}
                                                         <a href="{{route('export.kartuKeluarga.detail', $data->id)}}" class="my-3 mr-2 btn btn-success" target="_blank">EXPORT EXCEL</a>
                                                         <a href="{{ route('create.kk.detail', $data->id) }}" class="my-3 btn btn-info">TAMBAH DATA</a>
                                                     @endif
@@ -249,8 +253,8 @@
                                                                 <tr>
                                                                     <th>#</th>
                                                                     <th >Nama</th>
-                                                                    <th style="width: 20%" class="text-center">NIK</th>
-                                                                    <th class="text-center">Status hubungan Dalam Keluarga</th>
+                                                                    <th >NIK</th>
+                                                                    <th >Status hubungan Dalam Keluarga</th>
                                                                     <th class="text-right" style="display: {{Auth::user()->role=='WATCHER'?'none':''}}">Action</th>
                                                                 </tr>
                                                             </thead>
@@ -261,35 +265,29 @@
                                                                             <td>{{$loop->iteration}}</td>
                                                                             <td>
                                                                                 <!-- Button trigger modal -->
-                                                                                <a href="" class="text-light" data-toggle="tooltip" data-placement="top" title="Nama">{{$datakk->penduduk->nama}}</a>
-                                                                                <br />
-                                                                                <small> Created {{$datakk->created_at}} </small>
+                                                                                <a class="text-light" data-toggle="tooltip" data-placement="top" title="Nama">{{$datakk->penduduk->nama}}</a>
                                                                             </td>
                                                                             <td>
-                                                                                <ul class="text-center list-inline">
+                                                                                <ul class="list-inline">
                                                                                     <li class="list-inline-item">
                                                                                         {{$datakk->penduduk->NIK}}
                                                                                     </li>
                                                                                 </ul>
                                                                             </td>
                                                                             <td>
-                                                                                <ul class="text-center list-inline">
+                                                                                <ul class="list-inline">
                                                                                     <li class="list-inline-item">
                                                                                         {{$datakk->status_dalam_keluarga}}
                                                                                     </li>
                                                                                 </ul>
                                                                             </td>
                                                                             <td class="text-right project-actions">
-                                                                                {{-- <a class="btn btn-primary btn-sm" href="">
-                                                                                    <i class="fas fa-folder"> </i>
-                                                                                    View
-                                                                                </a> --}}
                                                                                 @if (Auth::user()->role!='WATCHER')
                                                                                     <a class="btn btn-info btn-sm" href="{{route('kartukeluarga-detail.edit', $datakk->id)}}">
                                                                                         <i class="fas fa-pencil-alt"> </i>
                                                                                         Edit
                                                                                     </a>
-                                                                                    <form action="{{route('kartukeluarga-detail.destroy', $datakk->id)}}" method="POST" class="">
+                                                                                    <form action="{{route('kartukeluarga-detail.destroy', $datakk->id)}}" method="POST" class="d-inline">
                                                                                         @csrf
                                                                                         @method('DELETE')
                                                                                         <button class="btn btn-danger btn-sm">

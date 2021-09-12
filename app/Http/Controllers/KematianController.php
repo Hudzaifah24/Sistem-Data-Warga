@@ -17,7 +17,7 @@ class KematianController extends Controller
      */
     public function index()
     {
-        $kematian = Kematian::get();
+        $kematian = Kematian::orderBy('nama', 'asc')->get();
         $filter = Kematian::select('tempat_kematian')->distinct()->get();
         return view('pages.data-kematian', compact('kematian', 'filter'));
     }
@@ -60,7 +60,7 @@ class KematianController extends Controller
      */
     public function create()
     {
-        $penduduk = Penduduk::get();
+        $penduduk = Penduduk::where('kematian', 0)->get();
         return view('pages.add-kematian', compact('penduduk'));
     }
 
@@ -132,7 +132,9 @@ class KematianController extends Controller
         $data['nama'] = $penduduk->nama;
 
         if ($request->file('persetujuan')) {
-            unlink('persetujuan_kematian/'. $kematian->persetujuan);
+            if ($kematian->persetujuan==null) {
+                unlink('persetujuan_kematian/'. $kematian->persetujuan);
+            }
 
             $namafile = time().'.'.$request->file('persetujuan')->extension();
             $request->file('persetujuan')->move(public_path('persetujuan_kematian'), $namafile);

@@ -17,6 +17,7 @@ class CreateKelahiranTable extends Migration
             $table->id();
             $table->string('namaKelahiran');
             $table->string('tempat_lahir');
+            $table->string('dusun');
             $table->string('tanggal_lahir');
             $table->string('jenis_kelamin');
             $table->text('persetujuan')->nullable();

@@ -44,6 +44,8 @@
                                     <div class="form-group">
                                         <input type="file" name="file" required>
                                     </div>
+                                    <span class="text-muted">Saya Menyarankan Agar Mendownload Templatenya Terlebih Dahulu...</span>
+                                    <a href="{{route('template.dusun')}}">Download Template... <i class="fa fa-download" aria-hidden="true"></i></a>
 
                                 </div>
                                 <div class="modal-footer">
@@ -140,65 +142,6 @@
                                   <button type="submit" class="btn btn-primary">Filter</button>
                               </div>
                         </form>
-                        {{-- <form action="{{route('filter.dusun')}}" method="GET">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Filter</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                              </div>
-                              <div class="modal-body">
-                                  <div>
-                                      <div class="form-group row">
-                                          <div class="text-center col-md-6">
-                                              <label for="recipient-name" class="col-form-label">Tanggal:</label>
-                                              <select name="tanggal" size="2" id="filter" class="form-control">
-                                              @php
-                                                  $a = date('d');
-                                                  $b = 1;
-                                                  $c = 1;
-                                                  for ($i= 0; $i < $a; $i++) {
-                                                      echo '<option value="'.$c++.'">'.$b++.'</option>';
-                                                  };
-                                                  @endphp
-                                              </select>
-                                          </div>
-
-                                          <div class="text-center col-md-6">
-                                              <label for="recipient-name" class="col-form-label">Bulan:</label>
-                                              <select name="bulan" size="2" id="filter" class="form-control">
-                                              @php
-                                                  $a = date('m');
-                                                  $b = 1;
-                                                  $c = 1;
-                                                  for ($i= 0; $i < $a; $i++) {
-                                                      echo '<option value="'.$c++.'">'.$b++.'</option>';
-                                                  };
-                                                  @endphp
-                                              </select>
-                                          </div>
-
-                                          <div class="text-center col-md-12">
-                                              <label for="recipient-name" class="col-form-label">Tahun:</label>
-                                              <select name="tahun" size="1" id="filter" class="form-control">
-                                              @php
-                                                  $a = date('Y');
-                                                  $b = 2020;
-                                                  $c = 2020;
-                                                  for ($i= 2019; $i < $a; $i++) {
-                                                      echo '<option value="'.$c++.'">'.$b++.'</option>';
-                                                  };
-                                                  @endphp
-                                              </select>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                  <button type="submit" class="btn btn-primary">Filter</button>
-                              </div>
-                        </form> --}}
                       </div>
                     </div>
                 </div>

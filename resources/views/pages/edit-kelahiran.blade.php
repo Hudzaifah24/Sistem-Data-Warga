@@ -44,20 +44,12 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="form-group">
-                                <label for="inputName">Nama Penduduk</label>
-                                <select name="penduduk_id" id="inputStatus" class="form-control custom-select">
-                                    @foreach ($penduduk as $data)
-                                        <option value="{{$data->id}}" {{$data->id==$kelahiran->penduduk_id?'selected':''}}>{{$data->nama}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
                             {{-- <div class="form-group">
                                 <label for="inputName">Persetujuan</label>
                                 <input value="{{ old('persetujuan') }}" name="persetujuan" type="text" id="inputName" class="form-control" />
                             </div> --}}
                             <div class="form-group">
-                                <label for="inputName">Masukkan Berkas Pendukung</label>
+                                <label for="inputName">Masukkan Akta Kelahiran (Photo)</label>
                                 <input value="{{ old('persetujuan') }}" name="persetujuan" type="file" id="inputName" class="form-control" />
                             </div>
                         </div>

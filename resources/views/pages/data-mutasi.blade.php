@@ -45,6 +45,8 @@
                                     <div class="form-group">
                                         <input type="file" name="file">
                                     </div>
+                                    <span class="text-muted">Saya Menyarankan Agar Mendownload Templatenya Terlebih Dahulu...</span>
+                                    <a href="{{route('template.mutasi')}}">Download Template... <i class="fa fa-download" aria-hidden="true"></i></a>
 
                                 </div>
                                 <div class="modal-footer">
@@ -55,9 +57,9 @@
                         </form>
                     </div>
                 </div>
-                <a href="{{ route('export.mutasi') }}" class="my-3 mr-2 btn btn-success" target="_blank">EXPORT EXCEL</a>
-                <a href="{{ route('mutasi.create') }}" class="my-3 btn btn-info">TAMBAH DATA</a>
+                <a href="{{ route('mutasi.create') }}" class="my-3 mr-2 btn btn-info">TAMBAH DATA</a>
             @endif
+                <a href="{{ route('export.mutasi') }}" class="my-3 btn btn-success" target="_blank">EXPORT EXCEL</a>
         </div>
         <!-- /.container-fluid -->
         </section>
