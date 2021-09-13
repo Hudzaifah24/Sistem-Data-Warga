@@ -74,8 +74,16 @@ class KartuKeluargaController extends Controller
         $data = $request->all();
         $penduduk = Penduduk::find($request->penduduk_id);
         $data['nama'] = $penduduk->nama;
+        $kk = KartuKeluarga::create($data);
 
-        KartuKeluarga::create($data);
+        $create = [
+            'status_dalam_keluarga' => 'AYAH',
+            'kartukeluarga_id' => $kk->id,
+            'penduduk_id' => $request->penduduk_id,
+        ];
+
+        DetailKartuKeluarga::create($create);
+
         return redirect()->route('kartukeluarga.index')->with('add', 'Data Berhasil Ditambah');
     }
 
@@ -115,7 +123,18 @@ class KartuKeluargaController extends Controller
         $datakk = KartuKeluarga::find($id);
         $data = $request->all();
 
+        $kartuKeluargaDetail = DetailKartuKeluarga::where('status_dalam_keluarga', 'AYAH');
+        $edit = [
+            'status_dalam_keluarga' => 'AYAH',
+            'kartukeluarga_id' => $id,
+            'penduduk_id' => $request->penduduk_id,
+        ];
+
+        $penduduk = Penduduk::find($request->penduduk_id);
+        $data['nama'] = $penduduk->nama;
+
         $datakk->update($data);
+        $kartuKeluargaDetail->update($edit);
         return redirect()->route('kartukeluarga.index')->with('edit', 'Data Berhasil Diedit');
     }
 

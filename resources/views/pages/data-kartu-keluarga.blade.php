@@ -282,19 +282,25 @@
                                                                                 </ul>
                                                                             </td>
                                                                             <td class="text-right project-actions">
-                                                                                @if (Auth::user()->role!='WATCHER')
-                                                                                    <a class="btn btn-info btn-sm" href="{{route('kartukeluarga-detail.edit', $datakk->id)}}">
-                                                                                        <i class="fas fa-pencil-alt"> </i>
-                                                                                        Edit
-                                                                                    </a>
-                                                                                    <form action="{{route('kartukeluarga-detail.destroy', $datakk->id)}}" method="POST" class="d-inline">
-                                                                                        @csrf
-                                                                                        @method('DELETE')
-                                                                                        <button class="btn btn-danger btn-sm">
-                                                                                            <i class="fas fa-trash"> </i>
-                                                                                            Delete
-                                                                                        </button>
-                                                                                    </form>
+                                                                                @if ($datakk->status_dalam_keluarga!='AYAH')
+                                                                                    @if (Auth::user()->role!='WATCHER')
+                                                                                        <a class="btn btn-info btn-sm" href="{{route('kartukeluarga-detail.edit', $datakk->id)}}">
+                                                                                            <i class="fas fa-pencil-alt"> </i>
+                                                                                            Edit
+                                                                                        </a>
+                                                                                        <form action="{{route('kartukeluarga-detail.destroy', $datakk->id)}}" method="POST" class="d-inline">
+                                                                                            @csrf
+                                                                                            @method('DELETE')
+                                                                                            <button class="btn btn-danger btn-sm">
+                                                                                                <i class="fas fa-trash"> </i>
+                                                                                                Delete
+                                                                                            </button>
+                                                                                        </form>
+                                                                                    @endif
+                                                                                @else
+                                                                                    <div class="badge badge-danger">
+                                                                                        Kepala Keluarga
+                                                                                    </div>
                                                                                 @endif
                                                                             </td>
                                                                         </tr>

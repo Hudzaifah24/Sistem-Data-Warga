@@ -58,7 +58,6 @@
                                 <label for="inputName">Stutus Hubungan Dalam Keluarga</label>
                                 <select name="status_dalam_keluarga" id="inputStatus" class="form-control custom-select">
                                     <option selected disabled>Select one</option>
-                                    <option value="AYAH">Ayah</option>
                                     <option value="IBU">Ibu</option>
                                     <option value="ANAK">Anak</option>
                                 </select>

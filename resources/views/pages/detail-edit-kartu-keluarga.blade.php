@@ -53,14 +53,15 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label for="inputName">Stutus Hubungan Dalam Keluarga</label>
-                                <select name="status_dalam_keluarga" id="inputStatus" class="form-control custom-select">
-                                    <option value="AYAH" {{$detailkk->status_dalam_keluarga=='AYAH'?'selected':''}}>Ayah</option>
-                                    <option value="IBU" {{$detailkk->status_dalam_keluarga=='IBU'?'selected':''}}>Ibu</option>
-                                    <option value="ANAK" {{$detailkk->status_dalam_keluarga=='ANAK'?'selected':''}}>Anak</option>
-                                </select>
-                            </div>
+                            @if ($detailkk->status_dalam_keluarga!='AYAH')
+                                <div class="form-group">
+                                    <label for="inputName">Stutus Hubungan Dalam Keluarga</label>
+                                    <select name="status_dalam_keluarga" id="inputStatus" class="form-control custom-select">
+                                        <option value="IBU" {{$detailkk->status_dalam_keluarga=='IBU'?'selected':''}}>Ibu</option>
+                                        <option value="ANAK" {{$detailkk->status_dalam_keluarga=='ANAK'?'selected':''}}>Anak</option>
+                                    </select>
+                                </div>
+                            @endif
                         </div>
                         <!-- /.card-body -->
                     </div>

@@ -52,7 +52,7 @@
                                 <label for="inputName">NIK Penduduk</label>
                                 <select name="penduduk_id" id="inputStatus" class="form-control custom-select">
                                     @foreach ($penduduk as $data)
-                                        <option value="{{$data->id}}" {{$data->penduduk_id==$datakk->penduduk_id?'selected':''}}>{{$data->nama}}</option>
+                                        <option value="{{$data->id}}" {{$datakk->penduduk_id==$data->id?'selected':''}}>{{$data->NIK}} / {{$data->nama}}</option>
                                     @endforeach
                                 </select>
                             </div>
