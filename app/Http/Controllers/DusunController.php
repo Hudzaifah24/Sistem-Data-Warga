@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DusunRequest;
 use App\Models\Dusun;
 use Illuminate\Http\Request;
 
 class DusunController extends Controller
 {
+    public function API()
+    {
+        return response()->json(Dusun::all());
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -64,7 +71,7 @@ class DusunController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DusunRequest $request)
     {
         $data = $request->all();
 
@@ -102,7 +109,7 @@ class DusunController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DusunRequest $request, $id)
     {
         $dusun = Dusun::find($id);
         $data = $request->all();

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DusunController;
+use App\Http\Controllers\PendudukController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('dusun', [DusunController::class, 'API'])->name('api.dusun');
+
+Route::get('penduduk', [PendudukController::class, 'API'])->name('api.penduduk');

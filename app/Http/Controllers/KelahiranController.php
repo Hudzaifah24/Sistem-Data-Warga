@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\KelahiranRequest;
 use App\Models\Dusun;
 use App\Models\Kelahiran;
 use App\Models\Penduduk;
@@ -77,7 +78,7 @@ class KelahiranController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(KelahiranRequest $request)
     {
         $id = $request->dusun_id;
         $dusun = Dusun::find($id);
@@ -90,6 +91,7 @@ class KelahiranController extends Controller
             $request->file('persetujuan')->move(public_path('persetujuan_kelahiran'), $namaFile);
             $kelahiran['persetujuan'] = $namaFile;
         }
+        $kelahiran['NIK'] = $request->NIK;
         $kelahiran['namaKelahiran'] = $request->nama;
         $kelahiran['tempat_lahir'] = $request->tempat_lahir;
         $kelahiran['tanggal_lahir'] = $request->tanggal_lahir;

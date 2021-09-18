@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\KematianRequest;
 use App\Models\Dusun;
 use App\Models\Kematian;
 use App\Models\Penduduk;
@@ -30,7 +31,7 @@ class KematianController extends Controller
         if ($nama) {
             $kematian = Kematian::where('nama', 'like', '%'.$nama.'%')->get();
         } elseif ($nik) {
-            $kematian = Kematian::where('NIK', $nik)->get();
+            $kematian = Kematian::where('NIK', 'like', '%'.$nik.'%')->get();
         } else {
             $kematian = Kematian::get();
         }
@@ -70,7 +71,7 @@ class KematianController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(KematianRequest $request)
     {
         $data = $request->all();
 
@@ -124,7 +125,7 @@ class KematianController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(KematianRequest $request, $id)
     {
         $kematian = Kematian::find($id);
         $penduduk = Penduduk::find($request->penduduk_id);

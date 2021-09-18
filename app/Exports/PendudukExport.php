@@ -34,7 +34,6 @@ class PendudukExport implements FromCollection, WithMapping, WithHeadings
             $penduduk->status,
             $penduduk->pekerjaan,
             $penduduk->kewarganegaraan,
-            $penduduk->kepala_keluarga,
         ];
     }
 
@@ -56,7 +55,6 @@ class PendudukExport implements FromCollection, WithMapping, WithHeadings
             'Status',
             'Pekerjaan',
             'kewarganegaraan',
-            'Kepala Keluarga',
         ];
     }
 }

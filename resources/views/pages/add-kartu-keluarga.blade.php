@@ -31,7 +31,6 @@
                     <div class="card card-primary">
                         <div class="card-header">
                             <h3 class="card-title">Kartu Keluarga</h3>
-
                             <div class="card-tools">
                                 <button
                                     type="button"
@@ -43,20 +42,37 @@
                                 </button>
                             </div>
                         </div>
+                        @if (session()->has('err'))
+                            <div class="alert alert-danger" role="alert">
+                                {{ session()->get('err') }}
+                            </div>
+                        @endif
                         <div class="card-body">
                             <input type="hidden" name="penduduk" id="penduduk">
                             <div class="form-group">
                                 <label for="inputName">Nomor Kartu Keluarga</label>
-                                <input value="{{ old('no_kk') }}" name="no_kk" type="number" id="inputName" class="form-control" />
+                                <input value="{{ old('no_kk') }}" name="no_kk" type="number" id="inputName" class="form-control @error('no_kk') is-invalid @enderror" />
+                                @error('no_kk')
+                                    <div class="alert alert-danger" role="alert">
+                                        {{$message}}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="inputName">NIK Penduduk</label>
-                                <select name="penduduk_id" id="inputStatus" class="form-control custom-select">
+                                <select name="penduduk_id" id="inputStatus" class="form-control custom-select @error('penduduk_id') is-invalid @enderror">
                                     <option selected disabled>Select one</option>
                                     @foreach ($penduduk as $data)
-                                        <option value="{{$data->id}}">{{$data->nama}}</option>
+                                        @if ($data->jenis_kelamin=='LAKILAKI')
+                                            <option value="{{$data->id}}">{{$data->NIK}} / {{$data->nama}}</option>
+                                        @endif
                                     @endforeach
                                 </select>
+                                @error('penduduk_id')
+                                    <div class="alert alert-danger" role="alert">
+                                        {{$message}}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
                         <!-- /.card-body -->

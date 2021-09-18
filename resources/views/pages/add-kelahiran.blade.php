@@ -46,6 +46,10 @@
                         <div class="card-body">
                             <input type="hidden" name="dusun" id="dusun">
                             <div class="form-group">
+                                <label for="inputName">NIK</label>
+                                <input placeholder="NIK" value="{{ old('NIK') }}" name="NIK" type="number" id="inputName" class="form-control" />
+                            </div>
+                            <div class="form-group">
                                 <label for="inputName">Nama Lengkap</label>
                                 <input placeholder="Nama Lengkap" value="{{ old('nama') }}" name="nama" type="text" id="inputName" class="form-control" />
                             </div>

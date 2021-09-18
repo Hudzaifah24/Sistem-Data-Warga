@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PendudukRequest;
 use App\Models\Dusun;
 use App\Models\Penduduk;
-use App\Models\Warga;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class PendudukController extends Controller
 {
+    public function API()
+    {
+        return response()->json(Penduduk::all());
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -71,7 +74,7 @@ class PendudukController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PendudukRequest $request)
     {
         $data = $request->all();
         $dusun = Dusun::find($request->dusun_id);
@@ -112,14 +115,19 @@ class PendudukController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PendudukRequest $request, $id)
     {
         $penduduk = Penduduk::find($id);
         $data = $request->all();
         $dusun = Dusun::find($request->dusun_id);
         $data['dusun'] = $dusun->dusun;
+        $edit = $penduduk->kartuKeluarga();
+        $datakk = [
+            'nama' => $request->nama,
+        ];
 
         $penduduk->update($data);
+        $edit->update($datakk);
         return redirect()->route('penduduk.index')->with('edit', 'Data Berhasil Diedit');
     }
 

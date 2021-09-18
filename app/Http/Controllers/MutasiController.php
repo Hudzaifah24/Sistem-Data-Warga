@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MutasiRequest;
 use App\Models\Mutasi;
 use App\Models\Penduduk;
 use Illuminate\Database\Eloquent\Builder;
@@ -66,7 +67,7 @@ class MutasiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MutasiRequest $request)
     {
         $data = $request->all();
 
@@ -112,7 +113,7 @@ class MutasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MutasiRequest $request, $id)
     {
         $mutasi = Mutasi::find($id);
         $data = $request->all();

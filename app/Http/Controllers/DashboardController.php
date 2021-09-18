@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailKartuKeluarga;
 use App\Models\Dusun;
+use App\Models\KartuKeluarga;
 use App\Models\Kelahiran;
 use App\Models\Kematian;
 use App\Models\Mutasi;
@@ -16,7 +18,7 @@ class DashboardController extends Controller
         // Cart 1 Box
         $penduduk = Penduduk::count();
         $pendudukBaru = Penduduk::take(5)->get();
-        $kepalaKeluarga = Penduduk::where('kepala_keluarga', 1)->count();
+        $kepalaKeluarga = DetailKartuKeluarga::where('status_dalam_keluarga', 'AYAH')->count();
         $totalWargaKematian = Kematian::count();
         $totalWargaKelahiran = Kelahiran::count();
         $totalDusun = Dusun::count();

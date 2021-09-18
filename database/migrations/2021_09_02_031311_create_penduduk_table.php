@@ -28,7 +28,6 @@ class CreatePendudukTable extends Migration
             $table->string('kecamatan')->nullable();
             $table->enum('agama', ['ISLAM', 'KRISTEN', 'BUDA', 'HINDU', 'ATEIS']);
             $table->enum('status', ['MENIKAH', 'BELUM_MENIKAH', 'BERCERAI'])->nullable();
-            $table->boolean('kepala_keluarga')->default(false);
             $table->boolean('kematian')->nullable()->default(false);
             $table->boolean('kelahiran')->nullable()->default(false);
             $table->string('pekerjaan')->nullable();

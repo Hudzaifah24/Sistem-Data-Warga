@@ -46,11 +46,19 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="inputName">Nama</label>
-                                <input value="{{ old('dusun') }}" name="dusun" type="text" id="inputName" class="form-control" />
+                                <input value="{{ old('dusun') }}" name="dusun" type="text" id="inputName" class="form-control @error('dusun') is-invalid @enderror" />
+                                @error('dusun')
+                                    <div class="alert alert-danger" role="alert">{{$message}}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="inputName">Alamat</label>
-                                <input value="{{ old('alamat') }}" name="alamat" type="text" id="inputName" class="form-control" />
+                                <input value="{{ old('alamat') }}" name="alamat" type="text" id="inputName" class="form-control @error('alamat') is-invalid @enderror" />
+                                @error('alamat')
+                                    <div class="alert alert-danger" role="alert">
+                                        {{$message}}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
                         <!-- /.card-body -->

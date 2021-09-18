@@ -46,22 +46,37 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="inputName">Nama Penduduk</label>
-                                <select name="penduduk_id" id="inputStatus" class="form-control custom-select">
+                                <select name="penduduk_id" id="inputStatus" class="form-control custom-select @error('penduduk_id') is-invalid @enderror">
                                     <option selected disabled>Select one</option>
                                     @foreach ($penduduk as $data)
                                         <option value="{{$data->id}}" {{$data->id==$mutasi->penduduk_id?'selected':''}}>{{$data->nama}}</option>
                                     @endforeach
                                 </select>
+                                @error('penduduk_id')
+                                    <div class="alert alert-danger">
+                                        {{$message}}
+                                    </div>
+                                @enderror
                             </div>
                             <input type="hidden" name="nama">
                             <input type="hidden" name="alamat_sebelum">
                             <div class="form-group">
                                 <label for="inputName">Alamat Tujuan</label>
-                                <input value="{{ $mutasi->alamat_sesudah?$mutasi->alamat_sesudah:old('alamat_sesudah') }}" name="alamat_sesudah" type="text" id="inputName" class="form-control" />
+                                <input value="{{ $mutasi->alamat_sesudah?$mutasi->alamat_sesudah:old('alamat_sesudah') }}" name="alamat_sesudah" type="text" id="inputName" class="form-control @error('alamat_sesudah') is-invalid @enderror" />
+                                @error('alamat_sesudah')
+                                    <div class="alert alert-danger">
+                                        {{$message}}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="inputName">Alasan</label>
-                                <input value="{{ $mutasi->alasan?$mutasi->alasan:old('alasan') }}" name="alasan" type="text" id="inputName" class="form-control" />
+                                <input value="{{ $mutasi->alasan?$mutasi->alasan:old('alasan') }}" name="alasan" type="text" id="inputName" class="form-control @error('alasan') is-invalid @enderror" />
+                                @error('alasan')
+                                    <div class="alert alert-danger">
+                                        {{$message}}
+                                    </div>
+                                @enderror
                             </div>
                             @if (Auth::user()->role=='SUPERADMIN')
                                 <div class="form-group">

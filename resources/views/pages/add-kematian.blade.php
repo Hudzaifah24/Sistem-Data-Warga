@@ -46,30 +46,55 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="inputName">NIK Penduduk</label>
-                                <select name="penduduk_id" id="inputStatus" class="form-control custom-select">
+                                <select name="penduduk_id" id="inputStatus" class="form-control custom-select @error('penduduk_id') is-invalid @enderror">
                                     <option selected disabled>Select one</option>
                                     @foreach ($penduduk as $data)
                                         <option value="{{$data->id}}">{{$data->NIK}} / {{$data->nama}}</option>
                                     @endforeach
                                 </select>
+                                @error('penduduk_id')
+                                    <div class="alert alert-danger" role="alert">
+                                        {{$message}}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="inputName">Tempat Kematian</label>
-                                <input value="{{ old('tempat_kematian') }}" name="tempat_kematian" type="text" id="inputName" class="form-control" />
+                                <input value="{{ old('tempat_kematian') }}" name="tempat_kematian" type="text" id="inputName" class="form-control @error('tempat_kematian') is-invalid @enderror" />
+                                @error('tempat_kematian')
+                                    <div class="alert alert-danger" role="alert">
+                                        {{$message}}
+                                    </div>
+                                @enderror
                             </div>
                             <input type="hidden" name="nama" id="nama">
                             <input type="hidden" name="NIK" id="NIK">
                             <div class="form-group">
                                 <label for="inputName">Tanggal Kematian</label>
-                                <input value="{{ old('tanggal_kematian') }}" name="tanggal_kematian" type="date" id="inputName" class="form-control" />
+                                <input value="{{ old('tanggal_kematian') }}" name="tanggal_kematian" type="date" id="inputName" class="form-control @error('tanggal_kematian') is-invalid @enderror" />
+                                @error('tanggal_kematian')
+                                    <div class="alert alert-danger" role="alert">
+                                        {{$message}}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="inputName">Alasan</label>
-                                <input value="{{ old('alasan') }}" name="alasan" type="text" id="inputName" class="form-control" />
+                                <input value="{{ old('alasan') }}" name="alasan" type="text" id="inputName" class="form-control @error('alasan') is-invalid @enderror" />
+                                @error('alasan')
+                                    <div class="alert alert-danger" role="alert">
+                                        {{$message}}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="inputName">Akta Kematian (Photo)</label>
                                 <input value="{{ old('persetujuan') }}" name="persetujuan" type="file" id="inputName" class="form-control" />
+                                @error('persetujuan')
+                                    <div class="alert alert-info" role="alert">
+                                        {{$message}}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
                         <!-- /.card-body -->

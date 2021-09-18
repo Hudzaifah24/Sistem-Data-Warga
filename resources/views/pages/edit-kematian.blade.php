@@ -45,25 +45,33 @@
                         </div>
                         <div class="card-body">
                             <input type="hidden" name="nama" id="nama">
-                            <div class="form-group">
-                                <label for="inputName">NIK Penduduk</label>
-                                <select name="penduduk_id" id="inputStatus" class="form-control custom-select">
-                                    @foreach ($penduduk as $data)
-                                        <option value="{{$data->id}}" {{$data->id==$kematian->penduduk_id?'selected':''}}>{{$data->NIK}} / {{$data->nama}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                            <input type="hidden" name="penduduk_id" value="{{$kematian->penduduk_id}}" id="penduduk_id">
                             <div class="form-group">
                                 <label for="inputName">Tempat Kematian</label>
-                                <input value="{{ $kematian->tempat_kematian?$kematian->tempat_kematian:old('tempat_kematian') }}" name="tempat_kematian" type="text" id="inputName" class="form-control" />
+                                <input value="{{ $kematian->tempat_kematian?$kematian->tempat_kematian:old('tempat_kematian') }}" name="tempat_kematian" type="text" id="inputName" class="form-control @error('tempat_kematian') is-invalid @enderror" />
+                                @error('tempat_kematian')
+                                    <div class="alert alert-danger" role="alert">
+                                        {{$message}}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="inputName">Tanggal Kematian</label>
-                                <input value="{{ $kematian->tanggal_kematian?$kematian->tanggal_kematian:old('tanggal_kematian') }}" name="tanggal_kematian" type="date" id="inputName" class="form-control" />
+                                <input value="{{ $kematian->tanggal_kematian?$kematian->tanggal_kematian:old('tanggal_kematian') }}" name="tanggal_kematian" type="date" id="inputName" class="form-control @error('tanggal_kematian') is-invalid @enderror" />
+                                @error('tanggal_kematian')
+                                    <div class="alert alert-danger" role="alert">
+                                        {{$message}}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="inputName">Alasan</label>
-                                <input value="{{ $kematian->alasan?$kematian->alasan:old('alasan') }}" name="alasan" type="text" id="inputName" class="form-control" />
+                                <input value="{{ $kematian->alasan?$kematian->alasan:old('alasan') }}" name="alasan" type="text" id="inputName" class="form-control @error('alasan') is-invalid @enderror" />
+                                @error('alasan')
+                                    <div class="alert alert-danger" role="alert">
+                                        {{$message}}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="inputName">Akta Kematian (Photo)</label>

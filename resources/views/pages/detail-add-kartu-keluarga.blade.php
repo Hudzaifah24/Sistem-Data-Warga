@@ -43,6 +43,11 @@
                                 </button>
                             </div>
                         </div>
+                        @if (session()->has('err'))
+                            <div class="alert alert-danger" role="alert">
+                                {{ session()->get('err') }}
+                            </div>
+                        @endif
                         <div class="card-body">
                             <input type="hidden" name="kartukeluarga_id" value="{{$kartuKeluarga->id}}">
                             <div class="form-group">

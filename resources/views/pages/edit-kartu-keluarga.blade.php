@@ -46,15 +46,27 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="inputName">Nomor Kartu Keluarga</label>
-                                <input value="{{ $datakk->no_kk?$datakk->no_kk:old('no_kk') }}" name="no_kk" type="number" id="inputName" class="form-control" />
+                                <input value="{{ $datakk->no_kk?$datakk->no_kk:old('no_kk') }}" name="no_kk" type="number" id="inputName" class="form-control @error('no_kk') is-invalid @enderror" />
+                                @error('no_kk')
+                                    <div class="alert alert-danger" role="alert">
+                                        {{$message}}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="inputName">NIK Penduduk</label>
-                                <select name="penduduk_id" id="inputStatus" class="form-control custom-select">
+                                <select name="penduduk_id" id="inputStatus" class="form-control @error('penduduk_id') is-invalid @enderror custom-select">
                                     @foreach ($penduduk as $data)
-                                        <option value="{{$data->id}}" {{$datakk->penduduk_id==$data->id?'selected':''}}>{{$data->NIK}} / {{$data->nama}}</option>
+                                        @if ($data->jenis_kelamin == 'LAKILAKI')
+                                            <option value="{{$data->id}}" {{$datakk->penduduk_id==$data->id?'selected':''}}>{{$data->NIK}} / {{$data->nama}}</option>
+                                        @endif
                                     @endforeach
                                 </select>
+                                @error('penduduk_id')
+                                    <div class="alert alert-danger" role="alert">
+                                        {{$message}}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
                         <!-- /.card-body -->

@@ -26,8 +26,9 @@ class DetailKartuKeluargaController extends Controller
      */
     public function create($id)
     {
-        $penduduk = Penduduk::get();
+        $penduduk = Penduduk::with('kartukeluarga')->doesntHave('detailKartuKeluarga')->doesntHave('kematian')->get();
         $kartuKeluarga = KartuKeluarga::find($id);
+
         return view('pages.detail-add-kartu-keluarga', compact('penduduk', 'kartuKeluarga'));
     }
 
@@ -40,6 +41,12 @@ class DetailKartuKeluargaController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        $kker = DetailKartuKeluarga::where('penduduk_id', (request('penduduk_id')))->get();
+        foreach ($kker as $a) {
+            if (isset($a->penduduk_id)) {
+                return back()->with('err', 'Penduduk Sudah Memiliki Kartu Keluarga');
+            }
+        }
 
         DetailKartuKeluarga::create($data);
         return redirect()->route('kartukeluarga.index')->with('add', 'Data Berhasil Ditambah');

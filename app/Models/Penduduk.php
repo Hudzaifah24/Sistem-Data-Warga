@@ -28,7 +28,6 @@ class Penduduk extends Model
         'status_hidup',
         'kelahiran',
         'kematian',
-        'kepala_keluarga',
         'pekerjaan',
         'kewarganegaraan',
     ];
@@ -48,6 +47,16 @@ class Penduduk extends Model
     public function kartuKeluarga()
     {
         return $this->hasMany(KartuKeluarga::class, 'penduduk_id', 'id');
+    }
+
+    public function detailKartuKeluarga()
+    {
+        return $this->hasMany(DetailKartuKeluarga::class, 'penduduk_id', 'id');
+    }
+
+    public function kematian()
+    {
+        return $this->hasMany(Kematian::class, 'penduduk_id', 'id');
     }
 
     public function kelahiran()

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\KartuKeluargaRequest;
 use App\Models\DetailKartuKeluarga;
 use App\Models\KartuKeluarga;
 use App\Models\Penduduk;
@@ -69,13 +70,19 @@ class KartuKeluargaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(KartuKeluargaRequest $request)
     {
         $data = $request->all();
         $penduduk = Penduduk::find($request->penduduk_id);
         $data['nama'] = $penduduk->nama;
-        $kk = KartuKeluarga::create($data);
+        $kker = KartuKeluarga::where('penduduk_id', (request('penduduk_id')))->get();
+        foreach ($kker as $a) {
+            if (isset($a->penduduk_id)) {
+                return back()->with('err', 'Penduduk Sudah Memiliki Kartu Keluarga');
+            }
+        }
 
+        $kk = KartuKeluarga::create($data);
         $create = [
             'status_dalam_keluarga' => 'AYAH',
             'kartukeluarga_id' => $kk->id,
@@ -118,7 +125,7 @@ class KartuKeluargaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(KartuKeluargaRequest $request, $id)
     {
         $datakk = KartuKeluarga::find($id);
         $data = $request->all();
